@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation: Amal Krishnan & Dr. Arya</title>
-    <!-- Premium Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Amal & Arya's Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --kerala-gold: #d4af37;
-            --deep-maroon: #581845;
-            --off-white: #fcfbf7;
-            --text-dark: #2c2520;
-            --text-light: #6e655f;
-            --card-shadow: 0 20px 40px rgba(88, 24, 69, 0.08);
+            --primary: #ffffff;
+            --accent: #d4af37; /* Warm Gold */
+            --bg-overlay: rgba(18, 28, 24, 0.45); /* Soft cinematic tint */
+            --card-glass: rgba(255, 255, 255, 0.12);
+            --card-border: rgba(255, 255, 255, 0.25);
         }
 
         * {
@@ -24,225 +23,369 @@
             padding: 0;
         }
 
-        body {
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
             font-family: 'Montserrat', sans-serif;
-            background-color: #f3f0e7;
-            background-image: radial-gradient(var(--off-white) 1px, transparent 0);
-            background-size: 24px 24px;
-            color: var(--text-dark);
+            color: var(--primary);
+            background-color: #0b110e;
+        }
+
+        /* Fullscreen Cinematic Background Video Container */
+        .video-background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-background-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Dimming Overlay to ensure text readability */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(1px);
+            z-index: -1;
+        }
+
+        /* Main Scrollable wrapper */
+        .main-wrapper {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 15px;
+            padding: 40px 20px;
+            z-index: 1;
         }
 
-        /* Royal Card Container */
-        .invitation-card {
+        /* Glassmorphism Presentation Invitation Card */
+        .glass-invitation-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            max-width: 540px;
             width: 100%;
-            max-width: 440px;
-            background: var(--off-white);
-            border-radius: 30px;
-            box-shadow: var(--card-shadow);
-            padding: 40px 25px;
+            padding: 60px 40px;
+            border-radius: 12px;
             text-align: center;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: elegantFade 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1.4s ease-out;
         }
 
-        /* Traditional Kasavu Border Element */
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border: 1px solid var(--kerala-gold);
-            border-radius: 20px;
-            pointer-events: none;
-            opacity: 0.7;
+        /* Audio Music Controller UI Button */
+        .music-toggle-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
         }
 
-        @keyframes elegantFade {
-            from { opacity: 0; transform: scale(0.96) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        .music-toggle-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.25);
         }
 
-        .auspicious-text {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            color: var(--deep-maroon);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-        }
-
-        /* Traditional Visual Motif */
-        .motif {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--kerala-gold);
-        }
-
-        .invitation-line {
+        /* Typography Styles */
+        .sub-title {
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-light);
-            margin-bottom: 20px;
+            letter-spacing: 5px;
+            font-weight: 200;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.85);
+            animation: fadeIn 2s ease-in;
         }
 
-        /* Couple Typographic Display */
         .couple-names {
-            margin: 25px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.8rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .groom, .bride {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--deep-maroon);
-            font-weight: 700;
-            letter-spacing: 0.05em;
+        .couple-names span {
             display: block;
-        }
-
-        .ampersand {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--kerala-gold);
-            margin: 8px 0;
-            display: block;
+            font-size: 2.2rem;
             font-style: italic;
+            color: var(--accent);
+            margin: 10px 0;
         }
 
-        .date-container {
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 15px 0;
-            margin: 30px auto;
-            max-width: 85%;
+        .invitation-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .event-details {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 0;
+            margin-bottom: 40px;
         }
 
         .wedding-date {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: 0.05em;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
         }
 
         .wedding-time {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: 5px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        /* Premium Actionable Buttons */
-        .action-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 30px;
-            padding: 0 10px;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 16px;
-            border-radius: 50px;
-            font-size: 0.88rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .wedding-venue {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .venue-highlight {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Countdown Grid Styles */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 340px;
+            margin: 0 auto 40px auto;
+        }
+
+        .countdown-segment {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 5px;
+            border-radius: 6px;
+        }
+
+        .countdown-val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .countdown-lbl {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Action Buttons */
+        .action-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #121c18;
             text-decoration: none;
-            transition: all 0.3s ease;
+            padding: 16px 45px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             border: none;
+            outline: none;
         }
 
-        .btn-gold {
-            background: linear-gradient(135deg, #e5c044, #d4af37);
+        .action-button:hover {
+            background-color: var(--accent);
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(212, 175, 55, 0.3);
         }
 
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        /* Smooth CSS Entrance Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--deep-maroon);
-            color: var(--deep-maroon);
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .btn-outline:hover {
-            background-color: rgba(88, 24, 69, 0.03);
-            transform: translateY(-1px);
-        }
-
-        .footer-blessing {
-            margin-top: 35px;
-            font-size: 0.75rem;
-            font-style: italic;
-            color: var(--text-light);
-            letter-spacing: 0.05em;
+        @media (max-width: 480px) {
+            .glass-invitation-card {
+                padding: 45px 20px;
+            }
+            .couple-names {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="invitation-card">
-        <div class="auspicious-text">|| Swasthi ||</div>
-        
-        <!-- Traditional Nilavilakku / Floral Motif Icon Placeholder -->
-        <div class="motif">✨ 🌾 ✨</div>
-        
-        <div class="invitation-line">Together with their Families</div>
-        
-        <div class="couple-names">
-            <span class="groom">Amal Krishnan K</span>
-            <span class="ampersand">weds</span>
-            <span class="bride">Dr. Arya GL</span>
-        </div>
-        
-        <p class="invitation-line" style="font-size: 0.8rem; color: var(--text-dark);">
-            Kindly request the honour of your presence to celebrate their auspicious marriage ceremony.
-        </p>
-        
-        <div class="date-container">
-            <!-- Update the date text below when finalized -->
-            <div class="wedding-date">NOVEMBER 2026</div>
-            <div class="wedding-time">Muhurtham to follow</div>
-        </div>
+    <!-- Native Background Video Track (Playsinline is required for iOS compatibility) -->
+    <div class="video-background-container">
+        <!-- Replaced with a beautiful cinematic premium cloud/nature stock placeholder video -->
+        <video autoplay loop muted playsinline id="bg-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-motion-of-gold-glitter-background-41618-large.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    
+    <div class="video-overlay"></div>
 
-        <div class="action-stack">
-            <!-- Direct Invitation Card PDF Link -->
-            <a href="assets/Wedding-Invitation.pdf" download class="btn btn-gold">
-                📥 Download Wedding Card
-            </a>
+    <!-- Music Control Icon Button (Supports ambient backdrop scores) -->
+    <div class="music-toggle-btn" id="music-btn" title="Toggle Music">
+        <!-- Simple modern SVG play/pause icon placeholder -->
+        <svg id="music-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+    </div>
+
+    <!-- Hidden audio element for optional background score -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="main-wrapper">
+        <div class="glass-invitation-card">
+            <p class="sub-title">The Wedding Celebration</p>
             
-            <!-- Quick Interactive RSVP Routing -->
-            <a href="https://google.com" target="_blank" class="btn btn-outline">
-                💌 Confirm Attendance (RSVP)
-            </a>
-        </div>
+            <h1 class="couple-names">
+                Amal Krishnan K
+                <span>&</span>
+                Dr.Arya GL
+            </h1>
+            
+            <p class="invitation-message">
+                Together with our families, we invite you to share in our joy as we exchange our wedding vows and step into our forever.
+            </p>
+            
+            <div class="event-details">
+                <p class="wedding-date">December 28, 2026</p>
+                <p class="wedding-time">At Twelve O'Clock in the Morning</p>
+                <p class="wedding-venue">
+                    <span class="venue-highlight">Nakshatra Auditorium</span><br>
+                    Aingoth, Kanhangad, Kasaragod, Kerala, India
+                </p>
+            </div>
 
-        <div class="footer-blessing">
-            Seek your blessings as we begin our journey together.
+            <!-- Live Countdown Grid -->
+            <div class="countdown-grid">
+                <div class="countdown-segment">
+                    <span class="countdown-val" id="days">00</span>
+                    <span class="countdown-lbl">Days</span>
+                </div>
+                <div class="countdown-segment">
+                    <span class="countdown-val" id="hours">00</span>
+                    <span class="countdown-lbl">Hours</span>
+                </div>
+                <div class="countdown-segment">
+                    <span class="countdown-val" id="mins">00</span>
+                    <span class="countdown-lbl">Mins</span>
+                </div>
+                <div class="countdown-segment">
+                    <span class="countdown-val" id="secs">00</span>
+                    <span class="countdown-lbl">Secs</span>
+                </div>
+            </div>
+
+            <button class="action-button" onclick="triggerRSVP()">RSVP Online</button>
         </div>
     </div>
 
+    <script>
+        // Set specific Target Wedding Date timeline (December 28, 2026)
+        const weddingTime = new Date("2026-12-28T12:00:00").getTime();
+
+        const intervalTracker = setInterval(function() {
+            const currentMoment = new Date().getTime();
+            const timeDifference = weddingTime - currentMoment;
+
+            const daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsLeft = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = daysLeft < 10 ? "0" + daysLeft : daysLeft;
+            document.getElementById("hours").innerText = hoursLeft < 10 ? "0" + hoursLeft : hoursLeft;
+            document.getElementById("mins").innerText = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
+            document.getElementById("secs").innerText = secondsLeft < 10 ? "0" + secondsLeft : secondsLeft;
+
+            if (timeDifference < 0) {
+                clearInterval(intervalTracker);
+                document.querySelector(".countdown-grid").innerHTML = "<p style='font-style:italic; color:var(--accent); grid-column: span 4;'>The Celebration Has Begun!</p>";
+            }
+        }, 1000);
+
+        // Music Interaction Handler (Browsers require user interaction before playing audio)
+        const musicBtn = document.getElementById("music-btn");
+        const musicTrack = document.getElementById("bg-music");
+        
+        musicBtn.addEventListener("click", function() {
+            if (musicTrack.paused) {
+                musicTrack.play();
+                musicBtn.style.background = "rgba(212, 175, 55, 0.4)";
+            } else {
+                musicTrack.pause();
+                musicBtn.style.background = "rgba(255, 255, 255, 0.15)";
+            }
+        });
+
+        function triggerRSVP() {
+            alert("Thank you! Connecting you to the RSVP response portal...");
+            // You can replace this alert with window.location.href = "YOUR_GOOGLE_FORM_URL"
+        }
+    </script>
 </body>
 </html>
-
