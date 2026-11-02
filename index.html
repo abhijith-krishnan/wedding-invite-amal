@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation: Amal Krishnan & Dr. Arya</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --kerala-gold: #d4af37;
+            --deep-maroon: #581845;
+            --off-white: #fcfbf7;
+            --text-dark: #2c2520;
+            --text-light: #6e655f;
+            --card-shadow: 0 20px 40px rgba(88, 24, 69, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f3f0e7;
+            background-image: radial-gradient(var(--off-white) 1px, transparent 0);
+            background-size: 24px 24px;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        /* Royal Card Container */
+        .invitation-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--off-white);
+            border-radius: 30px;
+            box-shadow: var(--card-shadow);
+            padding: 40px 25px;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: elegantFade 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Traditional Kasavu Border Element */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid var(--kerala-gold);
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes elegantFade {
+            from { opacity: 0; transform: scale(0.96) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .auspicious-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--deep-maroon);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        /* Traditional Visual Motif */
+        .motif {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--kerala-gold);
+        }
+
+        .invitation-line {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* Couple Typographic Display */
+        .couple-names {
+            margin: 25px 0;
+        }
+
+        .groom, .bride {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--deep-maroon);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: block;
+        }
+
+        .ampersand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--kerala-gold);
+            margin: 8px 0;
+            display: block;
+            font-style: italic;
+        }
+
+        .date-container {
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px 0;
+            margin: 30px auto;
+            max-width: 85%;
+        }
+
+        .wedding-date {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 0.05em;
+        }
+
+        .wedding-time {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        /* Premium Actionable Buttons */
+        .action-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+            padding: 0 10px;
+        }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #e5c044, #d4af37);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--deep-maroon);
+            color: var(--deep-maroon);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(88, 24, 69, 0.03);
+            transform: translateY(-1px);
+        }
+
+        .footer-blessing {
+            margin-top: 35px;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-card">
+        <div class="auspicious-text">|| Swasthi ||</div>
+        
+        <!-- Traditional Nilavilakku / Floral Motif Icon Placeholder -->
+        <div class="motif">✨ 🌾 ✨</div>
+        
+        <div class="invitation-line">Together with their Families</div>
+        
+        <div class="couple-names">
+            <span class="groom">Amal Krishnan K</span>
+            <span class="ampersand">weds</span>
+            <span class="bride">Dr. Arya GL</span>
+        </div>
+        
+        <p class="invitation-line" style="font-size: 0.8rem; color: var(--text-dark);">
+            Kindly request the honour of your presence to celebrate their auspicious marriage ceremony.
+        </p>
+        
+        <div class="date-container">
+            <!-- Update the date text below when finalized -->
+            <div class="wedding-date">NOVEMBER 2026</div>
+            <div class="wedding-time">Muhurtham to follow</div>
+        </div>
+
+        <div class="action-stack">
+            <!-- Direct Invitation Card PDF Link -->
+            <a href="assets/Wedding-Invitation.pdf" download class="btn btn-gold">
+                📥 Download Wedding Card
+            </a>
+            
+            <!-- Quick Interactive RSVP Routing -->
+            <a href="https://google.com" target="_blank" class="btn btn-outline">
+                💌 Confirm Attendance (RSVP)
+            </a>
+        </div>
+
+        <div class="footer-blessing">
+            Seek your blessings as we begin our journey together.
+        </div>
+    </div>
+
+</body>
+</html>
+
